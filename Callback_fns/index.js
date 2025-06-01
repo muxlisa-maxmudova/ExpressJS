@@ -13,7 +13,7 @@ const cb3 = (req, res, next) => {
     next()
 }
 
-app.get("/", [cb1,cb2, cb3], (req, res, next) => {
+app.get("/", [cb1,cb2,cb3], (req, res, next) => {
     console.log("Fourth")
     next()
 }, (req, res) => {
