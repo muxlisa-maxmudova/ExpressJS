@@ -1,10 +1,16 @@
-import express from 'express';
-const app = express();
-app.get("/single-cb", (req,res, next)=>{
-    console.log("GET /single-cb");
+import express from "express"
+const app = express()
+const cb1 = (req, res, next) => {
+    console.log("First")
     next()
-}, (req,res)=>{
-    res.send("Got second callback function ❤")
-})
+}
+const cb2 = (req, res, next) => {
+    console.log("Second")
+    next()
+}
+const cb3 = (req, res) => {
+    res.send("Third")
+}
 
-app.listen(8000, ()=>console.log("Server is running on 8000 port"))
+app.get("/", [cb1,cb2,cb3])
+app.listen(8000, ()=>console.log("Running..."))
